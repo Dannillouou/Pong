@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
+    //public string axis;
     public float speed = 10.0f;
-    public string axis;
+    public bool ehPlayer1;
 
-    // Update is called once per frame
+    private float movimento;
+
     void Update(){
-        float v = Input.GetAxisRaw(axis); //eixo no qual o player está dando o comando
-        GetComponent<Rigidbody2D>().velocity =
-            new Vector2(0,v) * speed;
+        if(ehPlayer1){
+            movimento = Input.GetAxisRaw("Vertical");
+        }
+        else{
+            movimento = Input.GetAxisRaw("Vertical2");
+        }
+
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, movimento * speed);// x eh 0 pq so ha movimento na vertical
     }
 }
